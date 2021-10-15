@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L5</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <p>
+    <% if session[:user_id] %>
+      ログイン中（<%= User.find(session[:user_id]).uid %>さん）
+    <% else %>
+      ログインしていません
+    <% end %>
+    </p>
+  </body>
+</html>
