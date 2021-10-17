@@ -9,7 +9,8 @@ class TweetsController < ApplicationController
 
   def create
     #ログイン中にしたツイートリンクが表示されないのでsession[:user_id]が空であることは考慮しなくてよい
-    @tweet = Tweet.new(message: params[:tweet][:message], user_id: session[:user_id])
+    user = User.find_by(uid: session[:login_uid])
+    @tweet = Tweet.new(message: params[:tweet][:message], user_id: user.id)
     if @tweet.save
       #TODO: ツイートが成功したことをユーザに知らせる
       redirect_to root_path

@@ -7,7 +7,7 @@ class TopController < ApplicationController
     user = User.find_by(uid: params[:uid])
     if user and BCrypt::Password.new(user.pass) == params[:pass]
       #TODO: ログイン成功したことをユーザに知らせる
-      session[:user_id] = user.id
+      session[:login_uid] = user.uid
       redirect_to root_path
     else
       #TODO: エラーメッセージ
@@ -17,7 +17,7 @@ class TopController < ApplicationController
 
   def logout
     #TODO: ログアウトに成功したことをユーザに知らせる
-    session.delete(:user_id)
+    session.delete(:login_uid)
     redirect_to root_path
   end
 end

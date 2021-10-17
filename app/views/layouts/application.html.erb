@@ -13,8 +13,8 @@
     <%= yield %>
 
     <p>
-    <% if session[:user_id] %>
-      ログイン中（<%= User.find(session[:user_id]).uid %>さん）
+    <% if session[:login_uid] %>
+      ログイン中（<%= session[:login_uid] %>さん）
     <% else %>
       ログインしていません
     <% end %>
